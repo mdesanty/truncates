@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Truncates::VERSION
   spec.authors       = ["Michael DeSanty"]
   spec.email         = ["michael.desanty@gmail.com"]
-  spec.summary       = %q{Automatically truncate fields to specifies maximum lengths}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Automatically truncate fields to specifies maximum lengths.}
+  spec.description   = %q{Automatically truncate fields to specifies maximum lengths.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
