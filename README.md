@@ -1,6 +1,6 @@
 # Truncates
 
-TODO: Write a gem description
+This Gem allows you to set a field to automatically be truncated to a specific length before validatioin.
 
 ## Installation
 
@@ -20,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class Address < ActiveRecord::Base
+  truncates :city, max_length: 30, character_trail: "..."
+end
+```
 
 ## Contributing
 
