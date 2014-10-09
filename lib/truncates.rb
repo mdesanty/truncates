@@ -22,3 +22,4 @@ module Truncates
 end
 
 ActiveRecord::Base.send(:extend, Truncates)
+ActiveModel::Validations.send(:extend, Truncates)
