@@ -24,17 +24,17 @@ module Truncates
     when "set"
       method = 
       "def #{field_name}=(value)\n" +
-      "  if(value.present? && value.length > max_length)\n" +
-      "    new_value = value.slice(0, max_length - character_trail.length) + character_trail\n" +                  
+      "  new_value = value\n" +
+      "  if(value.present? && value.length > #{max_length})\n" +
+      "    new_value = value.slice(0, #{max_length} - \"#{character_trail}\".length) + \"#{character_trail}\"\n" +                  
       "  end\n" +
       "  \n" +
-      "  super(new_value)\n" +
+      "  @#{field_name} = new_value\n" +
       "end\n"
-            
+      
       eval(method.to_s)
     end
   end
 end
 
 ActiveRecord::Base.send(:extend, Truncates)
-ActiveModel::Validations.send(:extend, Truncates)
