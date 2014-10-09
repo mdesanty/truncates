@@ -4,8 +4,8 @@ module Truncates
   DEFAULT_MAX_LENGTH = 255
   
   def truncates(field_name, options = {})
-    raise("Hash expected, got #{options.class.name}") if not options.is_a?(Hash) and not options.empty?
-    max_length = options(:max_length) || DEFAULT_MAX_LENGTH
+    raise("Hash expected, got #{options.class.name}") if !options.is_a?(Hash) && !options.empty?
+    max_length = options[:max_length] || DEFAULT_MAX_LENGTH
     
     before_validation do 
       value = eval("self.#{field_name}")
