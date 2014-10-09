@@ -23,13 +23,13 @@ module Truncates
       end
     when "set"
       method = 
-      "def #{field_name}=(value)" +
-      "  if(value.present? && value.length > max_length)" +
-      "    new_value = value.slice(0, max_length - character_trail.length) + character_trail" +                  
-      "  end" +
+      "def #{field_name}=(value)\n" +
+      "  if(value.present? && value.length > max_length)\n" +
+      "    new_value = value.slice(0, max_length - character_trail.length) + character_trail\n" +                  
+      "  end\n" +
       "  \n" +
-      "  super(new_value)" +
-      "end"
+      "  super(new_value)\n" +
+      "end\n"
             
       eval(method.to_s)
     end
