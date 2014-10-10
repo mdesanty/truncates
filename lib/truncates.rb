@@ -22,17 +22,15 @@ module Truncates
         end
       end
     when "set"
-      method = 
-      "def #{field_name}=(value)\n" +
-      "  new_value = value\n" +
-      "  if(value.present? && value.length > #{max_length})\n" +
-      "    new_value = value.slice(0, #{max_length} - \"#{character_trail}\".length) + \"#{character_trail}\"\n" +                  
-      "  end\n" +
-      "  \n" +
-      "  @#{field_name} = new_value\n" +
-      "end\n"
-      
-      eval(method.to_s)
+      define_method "#{field_name}=" do |value|
+        new_value = value
+        if(value.present? && value.length > max_length)
+          new_value = value.slice(0, max_length - character_trail.length) + character_trail
+        end
+        
+        eval("@#{field_name} = \"#{new_value}\"")
+        eval("return @#{field_name}")
+      end  
     end
   end
 end
