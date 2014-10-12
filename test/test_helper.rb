@@ -43,3 +43,26 @@ class TruncatesCustomer < ActiveRecord::Base
   truncates :city, max_length: 5, on: :set
   truncates :state, max_length: 5, on: :validation
 end
+
+class TruncatesUser
+  include ActiveModel::Validations
+  extend Truncates
+  
+  attr_accessor :first_name,
+                :middle_name,
+                :last_name,
+                :city,
+                :state
+                
+  validates :first_name, length: {maximum: 255}
+  validates :middle_name, length: {maximum: 5}
+  validates :last_name, length: {maximum: 10}
+  validates :city, length: {maximum: 5}
+  validates :state, length: {maximum: 5}
+  
+  truncates :first_name, on: :set
+  truncates :middle_name, max_length: 5, on: :set
+  truncates :last_name, max_length: 10, character_trail: "...", on: :set
+  truncates :city, max_length: 5, on: :set
+  truncates :state, max_length: 5, on: :set
+end

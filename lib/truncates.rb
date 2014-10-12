@@ -28,9 +28,11 @@ module Truncates
           new_value = value.slice(0, max_length - character_trail.length) + character_trail
         end
         
-        super(new_value)
-        #eval("@#{field_name} = \"#{new_value}\"")
-        #eval("return @#{field_name}")
+        begin
+          super(new_value)
+        rescue NoMethodError
+          eval("@#{field_name} = \"#{new_value}\"") 
+        end
       end  
     end
   end
